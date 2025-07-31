@@ -168,7 +168,8 @@ footer {
 }
 
 .menu-toggle {
-    display: none;
+  position: absolute;
+  left: -9999px;
 }
 
 .menu-icon {
