@@ -168,8 +168,8 @@ footer {
 }
 
 .menu-toggle {
-  position: absolute;
-  left: -9999px;
+    position: absolute;
+    left: -9999px;
 }
 
 .menu-icon {
@@ -202,4 +202,41 @@ footer {
         flex-direction: column;
         align-items: flex-start;
     }
+}
+
+.about-values {
+    padding: 4rem 1rem;
+    background-color: #f7f7f7;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #222;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.value-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.value-box h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #e63946;
+}
+
+.value-box p {
+    font-size: 1rem;
+    color: #555;
 }
