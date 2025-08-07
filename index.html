@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
+    <!-- Intro Splash -->
+    <div class="intro-overlay" aria-hidden="true">
+        <div class="intro-box">NGBLLC</div>
+    </div>
+
     <header class="navbar">
         <div class="container">
             <h1 class="logo">New Generation Builders</h1>
@@ -32,7 +38,7 @@
         </div>
     </header>
 
-    <section class="wip-banner">
+    <section class="wip-banner reveal">
         <div class="container">
             <h3>🚧 Website In Progress</h3>
             <p>This site is currently under development. The design shown here is a preview to showcase structure and
@@ -40,11 +46,58 @@
         </div>
     </section>
 
-    <section class="hero">
+    <section class="hero reveal">
         <div class="hero-content">
             <h2>Building the Future with Excellence</h2>
             <p>Delivering top-tier construction solutions across the Northeast.</p>
-            <a href="#" class="cta-button">Explore Our Work</a>
+            <a href="projects.html" class="cta-button">Explore Our Work</a>
+        </div>
+    </section>
+
+    <!-- Zig-zag section -->
+    <section class="zigzag">
+        <div class="container">
+            <article class="zig-row reveal">
+                <div class="zig-media">
+                    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1400"
+                        alt="Preconstruction planning">
+                </div>
+                <div class="zig-copy">
+                    <h3>Preconstruction & Planning</h3>
+                    <p>Early collaboration to lock budget, schedule, and logistics before boots hit the site.</p>
+                </div>
+            </article>
+
+            <article class="zig-row reveal">
+                <div class="zig-media">
+                    <img src="https://images.unsplash.com/photo-1591453089816-0fbb971b3b0a?q=80&w=1400"
+                        alt="Field execution">
+                </div>
+                <div class="zig-copy">
+                    <h3>Schedule-Driven Execution</h3>
+                    <p>Coordinated trades, clean sites, and real-time communication to keep momentum.</p>
+                </div>
+            </article>
+
+            <article class="zig-row reveal">
+                <div class="zig-media">
+                    <img src="https://images.unsplash.com/photo-1581091014534-8987c1d3f3a9?q=80&w=1400"
+                        alt="Safety and quality">
+                </div>
+                <div class="zig-copy">
+                    <h3>Safety & Quality</h3>
+                    <p>Zero-incident mindset and documented QA/QC so turnover is smooth and complete.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Metrics stripe -->
+    <section class="metrics reveal" aria-label="Company metrics">
+        <div class="container metrics-grid">
+            <div class="metric"><strong>15+</strong><span>Years Experience</span></div>
+            <div class="metric"><strong>100+</strong><span>Projects Delivered</span></div>
+            <div class="metric"><strong>0</strong><span>Lost-Time Incidents (last 24 mo)</span></div>
         </div>
     </section>
 
@@ -53,6 +106,20 @@
             <p>&copy; 2025 NGBLLC Construction. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Minimal JS -->
+    <script>
+        // Fade out splash after load and on first scroll
+        const overlay = document.querySelector('.intro-overlay');
+        addEventListener('load', () => setTimeout(() => overlay?.classList.add('hide'), 900));
+        addEventListener('scroll', () => overlay?.classList.add('hide'), { once: true });
+
+        // Reveal on scroll
+        const io = new IntersectionObserver(es => {
+            es.forEach(e => e.isIntersecting && e.target.classList.add('show'));
+        }, { threshold: .15 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
 </body>
 
 </html>

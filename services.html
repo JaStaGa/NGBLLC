@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
-
 
 <body>
     <header class="navbar">
@@ -33,31 +33,86 @@
         </div>
     </header>
 
-    <section class="services">
+    <!-- Services Intro -->
+    <section class="services reveal" aria-labelledby="svc-title">
         <div class="container">
-            <h2 class="section-title">What We Build</h2>
-            <div class="services-grid">
+            <h2 class="section-title" id="svc-title">What We Build</h2>
+            <p class="careers-intro" style="margin-bottom:0">
+                From government facilities to commercial developments, we deliver schedule-driven projects with clean
+                sites,
+                clear communication, and a zero-incident mindset.
+            </p>
+
+            <div class="services-grid" style="margin-top:2rem">
                 <div class="service-card">
                     <h3>Government Infrastructure</h3>
                     <p>Public buildings and facilities that serve communities with excellence, safety, and reliability.
                     </p>
                 </div>
-
                 <div class="service-card">
                     <h3>Commercial Construction</h3>
                     <p>Offices, retail, and mixed-use spaces built to stand out and scale with business needs.</p>
                 </div>
-
                 <div class="service-card">
                     <h3>Real Estate Development</h3>
                     <p>From concept to ribbon-cutting, we deliver visionary spaces that drive long-term value.</p>
                 </div>
-
                 <div class="service-card">
                     <h3>Sustainability</h3>
-                    <p>LEED practices, green materials, and climate-conscious design integrated into every build.</p>
+                    <p>LEED practices, efficient systems, and climate-conscious materials integrated into every build.
+                    </p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Delivery Approach (zig-zag) -->
+    <section class="zigzag" aria-label="Delivery Approach">
+        <div class="container">
+            <article class="zig-row reveal">
+                <div class="zig-media">
+                    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1400"
+                        alt="Design-build collaboration">
+                </div>
+                <div class="zig-copy">
+                    <h3>Design-Build</h3>
+                    <p>One team, one contract, one timeline. We streamline coordination across trades to protect budget
+                        and schedule.</p>
+                </div>
+            </article>
+
+            <article class="zig-row reveal">
+                <div class="zig-media">
+                    <img src="https://images.unsplash.com/photo-1591453089816-0fbb971b3b0a?q=80&w=1400"
+                        alt="Construction management planning">
+                </div>
+                <div class="zig-copy">
+                    <h3>Construction Management</h3>
+                    <p>Transparent pricing, phasing plans, and risk registers—with frequent stakeholder updates to keep
+                        momentum.</p>
+                </div>
+            </article>
+
+            <article class="zig-row reveal">
+                <div class="zig-media">
+                    <img src="https://images.unsplash.com/photo-1581091014534-8987c1d3f3a9?q=80&w=1400"
+                        alt="Renovation and fit-outs">
+                </div>
+                <div class="zig-copy">
+                    <h3>Renovations & Fit-Outs</h3>
+                    <p>Occupied modernizations with dust control, safety pathways, and phased turnovers to minimize
+                        downtime.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Metrics -->
+    <section class="metrics reveal" aria-label="Safety and Performance Metrics">
+        <div class="container metrics-grid">
+            <div class="metric"><strong>95%</strong><span>On-Time Delivery</span></div>
+            <div class="metric"><strong>100+</strong><span>Completed Projects</span></div>
+            <div class="metric"><strong>0</strong><span>Lost-Time Incidents (24 mo)</span></div>
         </div>
     </section>
 
@@ -66,6 +121,14 @@
             <p>&copy; 2025 NGBLLC Construction. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Reveal-on-scroll (same tiny script as index) -->
+    <script>
+        const io = new IntersectionObserver(es => {
+            es.forEach(e => e.isIntersecting && e.target.classList.add('show'));
+        }, { threshold: .15 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
 </body>
 
 </html>
