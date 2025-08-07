@@ -1,0 +1,400 @@
+/* ==================================================
+   VARIABLES & GLOBAL RESET
+   ================================================== */
+:root {
+  --color-primary: #0d1b2a;       /* deep navy */
+  --color-secondary: #7c0a02;     /* maroon */
+  --color-accent: #f4d35e;        /* gold */
+  --color-text: #333333;
+  --color-bg: #ffffff;
+  --color-bg-light: #f7f7f7;
+  --color-border: #dddddd;
+  --color-muted: #555555;
+  --color-hero-overlay: rgba(0, 0, 0, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+}
+
+/* ==================================================
+   CONTAINER UTILITY
+   ================================================== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==================================================
+   NAVBAR
+   ================================================== */
+.navbar {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.navbar .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--color-accent);
+}
+
+.menu-toggle {
+  position: absolute;
+  left: -9999px;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Mobile menu toggle */
+@media (max-width: 750px) {
+  .menu-icon {
+    display: block;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: flex-start;
+  }
+  .menu-toggle:checked + .menu-icon + .nav-menu .nav-links {
+    display: flex;
+  }
+  .navbar .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ==================================================
+   HERO
+   ================================================== */
+.hero {
+  background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1950&q=80')
+    no-repeat center/cover;
+  color: #fff;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-hero-overlay);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.cta-button {
+  background-color: var(--color-secondary);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.cta-button:hover {
+  background-color: #5c0801;
+  transform: translateY(-2px);
+}
+
+/* ==================================================
+   WIP BANNER
+   ================================================== */
+.wip-banner {
+  background-color: #fff3cd;
+  color: #856404;
+  text-align: center;
+  padding: 1rem 1rem;
+  border-top: 2px solid #ffeeba;
+  border-bottom: 2px solid #ffeeba;
+  /* margin-top: 2rem; */
+}
+.wip-banner h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.wip-banner p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+/* ==================================================
+   FOOTER
+   ================================================== */
+footer {
+  background-color: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  /* margin-top: 2rem; */
+}
+
+/* ==================================================
+   ABOUT / VALUES
+   ================================================== */
+.about-values {
+  padding: 4rem 1rem;
+  background-color: var(--color-bg-light);
+  text-align: center;
+}
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+.value-box {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+}
+.value-box:hover {
+  transform: translateY(-4px);
+}
+.value-box h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-secondary);
+}
+.value-box p {
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+/* ==================================================
+   PROJECTS
+   ================================================== */
+.projects {
+  padding: 4rem 1rem;
+  background-color: var(--color-bg);
+  text-align: center;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.project-card {
+  background-color: var(--color-bg-light);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.project-card h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+.project-card p {
+  padding: 0 1rem 1rem;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+/* ==================================================
+   SERVICES
+   ================================================== */
+.services {
+  padding: 4rem 1rem;
+  background-color: #eef4f8;
+  text-align: center;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.service-card {
+  background-color: var(--color-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+}
+.service-card h3 {
+  font-size: 1.3rem;
+  color: var(--color-secondary);
+  margin-bottom: 1rem;
+}
+.service-card p {
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+/* ==================================================
+   CAREERS
+   ================================================== */
+.careers {
+  padding: 4rem 1rem;
+  background-color: var(--color-bg);
+  text-align: center;
+}
+.careers-intro {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  color: #444;
+}
+.job-listings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+.job-card {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+}
+.job-card:hover {
+  transform: translateY(-5px);
+}
+.job-card h3 {
+  color: var(--color-secondary);
+  margin-bottom: 0.75rem;
+}
+.job-card p {
+  color: var(--color-muted);
+  margin-bottom: 0.95rem;
+}
+.careers-cta {
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+/* ==================================================
+   CONTACT
+   ================================================== */
+.contact {
+  padding: 4rem 1rem;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+.contact-intro {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  color: #444;
+}
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.contact-form textarea {
+  resize: vertical;
+}
+.contact-info p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* ==================================================
+   RESPONSIVE TWEAKS
+   ================================================== */
+@media (max-width: 750px) {
+  .hero h2 { font-size: 2rem; }
+  .hero p  { font-size: 1rem; }
+  .cta-button { font-size: 1rem; padding: 0.6rem 1.2rem; }
+  .wip-banner { padding: 1.5rem 1rem; }
+  .wip-banner h3 { font-size: 1.2rem; }
+}
