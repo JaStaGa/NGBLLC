@@ -6,60 +6,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NGBLLC</title>
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
 </head>
 
 <body>
-    <!-- Intro Splash -->
-    <div class="intro-overlay" aria-hidden="true">
-        <div class="intro-box">NGBLLC</div>
-    </div>
 
-    <header class="navbar">
-        <div class="container">
-            <h1 class="logo">New Generation Builders</h1>
+    <!-- HERO FIRST -->
+    <section class="hero hero-home"
+        style="--hero-img: url('https://cdn10.bostonmagazine.com/wp-content/uploads/sites/2/2020/01/boston-skyline-best-views-socail.jpg');">
+        <!-- Top overlay header on hero -->
+        <header class="hero-header">
+            <div class="container header-row">
+                <div class="brand">
+                    <div class="brand-main">NGB</div>
+                    <div class="brand-sub">New Generation Builders</div>
+                </div>
 
-            <input type="checkbox" id="menu-toggle" class="menu-toggle">
-            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+                <!-- mobile toggle must stay adjacent to label + nav -->
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="menu-icon">&#9776;</label>
 
-            <nav class="nav-menu">
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="careers.html">Careers</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+                <nav class="nav-menu">
+                    <ul class="nav-links">
+                        <li><a href="under-construction.html">About</a></li>
+                        <li><a href="under-construction.html">Services</a></li>
+                        <li><a href="under-construction.html">Projects</a></li>
+                        <li><a href="under-construction.html">Careers</a></li>
+                        <li><a href="under-construction.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-    <section class="wip-banner reveal">
-        <div class="container">
-            <h3>🚧 Website In Progress</h3>
-            <p>This site is currently under development. The design shown here is a preview to showcase structure and
-                layout. Final content and sections are coming soon.</p>
-        </div>
-    </section>
-
-    <section class="hero reveal">
+        <!-- Hero copy -->
         <div class="hero-content">
-            <h2>Building the Future with Excellence</h2>
-            <p>Delivering top-tier construction solutions across the Northeast.</p>
-            <a href="projects.html" class="cta-button">Explore Our Work</a>
+            <h2>CONSTRUCTING THE FUTURE. BUILDING TRUST.</h2>
+            <a href="contact.html" class="cta-button">Request Proposal</a>
         </div>
     </section>
 
-    <!-- Zig-zag section -->
+    <!-- Website Under Construction banner (moved below hero) -->
+    <!-- <section class="wip-banner uc">
+        <div class="container">
+            <h3>Website Under Construction</h3>
+        </div>
+    </section> -->
+
+    <!-- VALUES STRIP (compact row on deep blue) -->
+    <section class="home-values-strip">
+        <div class="container home-values-grid">
+            <div class="values-item">
+                <div class="values-icon">💡</div>
+                <div class="values-text">
+                    <h4>Innovation</h4>
+                    <p>Ingenuity as an advantage.</p>
+                </div>
+            </div>
+
+            <div class="values-item">
+                <div class="values-icon">🛡️</div>
+                <div class="values-text">
+                    <h4>Integrity</h4>
+                    <p>Integrity is integrity.</p>
+                </div>
+            </div>
+
+            <div class="values-item">
+                <div class="values-icon">🤝</div>
+                <div class="values-text">
+                    <h4>Impact</h4>
+                    <p>Impacts are longevity.</p>
+                </div>
+            </div>
+
+            <div class="values-item">
+                <div class="values-icon">✅</div>
+                <div class="values-text">
+                    <h4>Honesty</h4>
+                    <p>Safety is non-negotiable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAFETY COMMITMENT (single blue callout) -->
+    <section class="safety-bar">
+        <div class="container safety-inner">
+            <span class="safety-emoji">🦺</span>
+            <p>We are committed to safety and quality in all aspects of our construction management.</p>
+        </div>
+    </section>
+
+    <!-- PROJECT PORTFOLIO (ambiguous preview images) -->
+    <section class="projects home-projects">
+        <div class="container">
+            <h2 class="section-title">Project Portfolio</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://as1.ftcdn.net/jpg/03/05/50/86/1000_F_305508687_6aqst6Jq9KXHl9bm3mShJFqX48M3LSoI.jpg"
+                        alt="Glass facade">
+                    <h3>Urban Glass Facade</h3>
+                    <p>Clean, modular exterior systems ready for a range of uses.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://aicraneliftingsolution.com/wp-content/uploads/2024/07/Flat-Grid-Structure.jpg"
+                        alt="Steel structure">
+                    <h3>Structural Steel Grid</h3>
+                    <p>Flexible frameworks for future-ready designs.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://architextures.org/img/home/home11.jpg" alt="Architectural texture">
+                    <h3>Architectural Texture</h3>
+                    <p>Abstract materials to fit commercial or civic needs.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.seattletimes.com/wp-content/uploads/2020/02/211416.jpg?d=2040x1194"
+                        alt="Cranes silhouette">
+                    <h3>Skyline Works</h3>
+                    <p>A neutral, in-progress silhouette for concept builds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="zigzag">
         <div class="container">
             <article class="zig-row reveal">
                 <div class="zig-media">
-                    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1400"
+                    <img src="https://www.shutterstock.com/image-photo/earthmover-caterpillar-moving-earth-on-600nw-2438298105.jpg"
                         alt="Preconstruction planning">
                 </div>
                 <div class="zig-copy">
@@ -70,7 +143,7 @@
 
             <article class="zig-row reveal">
                 <div class="zig-media">
-                    <img src="https://images.unsplash.com/photo-1591453089816-0fbb971b3b0a?q=80&w=1400"
+                    <img src="https://www.gannestonconstruction.com/wp-content/uploads/2022/09/5-types-of-building-construction-ganneston-construction.jpg"
                         alt="Field execution">
                 </div>
                 <div class="zig-copy">
@@ -81,7 +154,7 @@
 
             <article class="zig-row reveal">
                 <div class="zig-media">
-                    <img src="https://images.unsplash.com/photo-1581091014534-8987c1d3f3a9?q=80&w=1400"
+                    <img src="https://bostonglobe-prod.cdn.arcpublishing.com/resizer/v2/BDSNZOOWVJU7ZRQNABGS6UH2DE.jpg?auth=433740d1a36482ba1767cecbcfd9131993383de3f896e623801e448870c262a8&width=1440"
                         alt="Safety and quality">
                 </div>
                 <div class="zig-copy">
@@ -92,14 +165,7 @@
         </div>
     </section>
 
-    <!-- Metrics stripe -->
-    <section class="metrics reveal" aria-label="Company metrics">
-        <div class="container metrics-grid">
-            <div class="metric"><strong>15+</strong><span>Years Experience</span></div>
-            <div class="metric"><strong>100+</strong><span>Projects Delivered</span></div>
-            <div class="metric"><strong>0</strong><span>Lost-Time Incidents (last 24 mo)</span></div>
-        </div>
-    </section>
+    <!-- Keep anything else you want under here (sections, etc.) -->
 
     <footer>
         <div class="container">
@@ -107,7 +173,6 @@
         </div>
     </footer>
 
-    <!-- Minimal JS -->
     <script>
         // Fade out splash after load and on first scroll
         const overlay = document.querySelector('.intro-overlay');

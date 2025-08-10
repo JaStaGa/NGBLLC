@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Under Construction | NGBLLC</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+        /* Page-specific styles (kept here so you don't have to edit your main CSS) */
+        .placeholder-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(rgba(0, 0, 0, .35),
+                    rgba(0, 0, 0, .35)),
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .06), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, .06), transparent 40%),
+                var(--blue-900, #0b1f3b);
+            color: #fff;
+            text-align: center;
+        }
+
+        .placeholder-card {
+            max-width: 680px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+            backdrop-filter: blur(2px);
+        }
+
+        .placeholder-card h1 {
+            font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+            margin-bottom: .75rem;
+            letter-spacing: .4px;
+        }
+
+        .placeholder-card p {
+            font-size: 1rem;
+            color: #e9eef6;
+            margin-bottom: 1.5rem;
+        }
+
+        .placeholder-actions {
+            display: flex;
+            gap: .75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .ghost-btn {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, .7);
+            color: #fff;
+            padding: .7rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform .2s, background .2s, border-color .2s;
+        }
+
+        .ghost-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, .08);
+            border-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="placeholder-wrap">
+        <div class="placeholder-card">
+            <h1>Website Under Construction</h1>
+            <p>We’re working behind the scenes to bring you the full NGB experience. Thanks for your patience!</p>
+            <div class="placeholder-actions">
+                <a href="index.html" class="cta-button">Back to Home</a>
+                <a href="mailto:contact@ngbllc.com" class="ghost-btn">Contact Us</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
