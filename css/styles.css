@@ -1,6 +1,4 @@
-/* ==================================================
-   VARIABLES & GLOBAL RESET
-   ================================================== */
+/* vars and reset: define palette and normalize elements */
 :root {
   --blue-900: #0b1f3b;
   /* deep navy */
@@ -8,7 +6,7 @@
   --blue-700: #18497f;
   /* primary nav/link hover */
   --blue-600: #1e5fb0;
-  /* CTA button */
+  /* cta button */
   --blue-300: #e6f0ff;
   /* light banner bg */
   --gold: #f4d35e;
@@ -27,22 +25,22 @@
 }
 
 body {
+  /* base typography and colors */
   font-family: 'Segoe UI', sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
 }
 
-/* Container */
+/* centered content wrapper */
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto
 }
 
-/* ==================================================
-   HERO-FIRST HEADER (HOME ONLY)
-   ================================================== */
+/* ---------- hero-first layout (home) ---------- */
+/* full-viewport hero with background image set via --hero-img */
 .hero {
   background: var(--hero-img) no-repeat center/cover;
   color: #fff;
@@ -54,6 +52,7 @@ body {
   text-align: center;
 }
 
+/* dark overlay to improve text contrast */
 .hero::before {
   content: '';
   position: absolute;
@@ -61,6 +60,7 @@ body {
   background: var(--hero-overlay)
 }
 
+/* keep text above overlay */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -78,6 +78,7 @@ body {
   margin-bottom: 2rem
 }
 
+/* primary call-to-action */
 .cta-button {
   background: var(--blue-600);
   color: #fff;
@@ -93,6 +94,7 @@ body {
   filter: brightness(0.95)
 }
 
+/* header that sits on top of hero */
 .hero-header {
   position: absolute;
   top: 0;
@@ -100,10 +102,10 @@ body {
   width: 100%;
   padding: 1rem 0;
   z-index: 20;
-  /* increased to stay above content */
   background: transparent;
 }
 
+/* brand + nav row */
 .header-row {
   display: flex;
   align-items: center;
@@ -111,6 +113,7 @@ body {
   gap: 1rem
 }
 
+/* stacked brand text */
 .brand {
   display: flex;
   flex-direction: column;
@@ -129,6 +132,7 @@ body {
   margin-top: .15rem
 }
 
+/* top nav links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -147,11 +151,13 @@ body {
   color: var(--gold)
 }
 
+/* hidden checkbox for mobile toggle */
 .menu-toggle {
   position: absolute;
   left: -9999px
 }
 
+/* hamburger icon */
 .menu-icon {
   display: none;
   font-size: 2rem;
@@ -159,13 +165,14 @@ body {
   cursor: pointer
 }
 
-/* ---------- MOBILE NAV: right-side sheet ---------- */
+/* ---------- mobile nav: right-side sheet ---------- */
 @media (max-width:750px) {
   .header-row {
     flex-direction: row;
     align-items: center;
   }
 
+  /* show hamburger and place at end */
   .menu-icon {
     display: block;
     font-size: 2rem;
@@ -177,6 +184,7 @@ body {
     padding: .25rem .5rem;
   }
 
+  /* slide-in panel for nav */
   .nav-menu {
     position: fixed;
     top: 0;
@@ -192,6 +200,7 @@ body {
     z-index: 15;
   }
 
+  /* vertical nav links inside panel */
   .nav-links {
     display: flex;
     flex-direction: column;
@@ -207,10 +216,12 @@ body {
     font-weight: 600;
   }
 
+  /* open panel when checkbox is checked */
   .menu-toggle:checked+.menu-icon+.nav-menu {
     transform: translateX(0);
   }
 
+  /* dim hero when panel is open */
   .hero:has(#menu-toggle:checked)::after {
     content: '';
     position: absolute;
@@ -219,10 +230,12 @@ body {
     z-index: 12;
   }
 
+  /* prevent background scroll when panel open */
   body:has(#menu-toggle:checked) {
     overflow: hidden;
   }
 
+  /* responsive hero text + buttons */
   .hero h2 {
     font-size: 2rem;
   }
@@ -237,9 +250,7 @@ body {
   }
 }
 
-/* ==================================================
-   WIP BANNER
-   ================================================== */
+/* ---------- wip banner ---------- */
 .wip-banner {
   text-align: center;
   padding: 2rem 1rem;
@@ -258,9 +269,7 @@ body {
   font-weight: 700
 }
 
-/* ==================================================
-   FOOTER
-   ================================================== */
+/* ---------- footer ---------- */
 footer {
   background: var(--blue-900);
   color: #fff;
@@ -269,9 +278,7 @@ footer {
   margin-top: 2rem;
 }
 
-/* ==================================================
-   STANDARD NAVBAR (inner pages)
-   ================================================== */
+/* ---------- standard navbar (inner pages) ---------- */
 .navbar {
   background: var(--blue-900);
   color: #fff;
@@ -300,6 +307,8 @@ footer {
 }
 
 @media (max-width:750px) {
+
+  /* stack items and show collapsible list */
   .navbar .container {
     flex-direction: column;
     align-items: flex-start
@@ -322,9 +331,7 @@ footer {
   }
 }
 
-/* ==================================================
-   ABOUT / VALUES
-   ================================================== */
+/* ---------- about / values ---------- */
 .about-values {
   padding: 4rem 1rem;
   background: var(--bg-light);
@@ -344,6 +351,7 @@ footer {
 }
 
 .value-box {
+  /* card for each value */
   background: #fff;
   border: 1px solid var(--border);
   padding: 1.5rem;
@@ -367,9 +375,7 @@ footer {
   color: var(--muted)
 }
 
-/* ==================================================
-   PROJECTS
-   ================================================== */
+/* ---------- projects ---------- */
 .projects {
   padding: 4rem 1rem;
   background: #fff;
@@ -415,9 +421,7 @@ footer {
   color: var(--muted)
 }
 
-/* ==================================================
-   SERVICES
-   ================================================== */
+/* ---------- services ---------- */
 .services {
   padding: 4rem 1rem;
   background: #eef4f8;
@@ -454,9 +458,7 @@ footer {
   color: var(--muted)
 }
 
-/* ==================================================
-   CAREERS
-   ================================================== */
+/* ---------- careers ---------- */
 .careers {
   padding: 4rem 1rem;
   background: #fff;
@@ -503,9 +505,7 @@ footer {
   font-size: 1rem
 }
 
-/* ==================================================
-   CONTACT
-   ================================================== */
+/* ---------- contact ---------- */
 .contact {
   padding: 4rem 1rem;
   background: #f9f9f9;
@@ -529,6 +529,7 @@ footer {
 
 .contact-form input,
 .contact-form textarea {
+  /* basic form controls */
   padding: .75rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -546,9 +547,7 @@ footer {
   color: #333
 }
 
-/* ==================================================
-   HOME VALUES STRIP
-   ================================================== */
+/* ---------- home values quick strip ---------- */
 .home-values-strip {
   background: var(--blue-900, #0b1f3b);
   color: #fff;
@@ -606,9 +605,7 @@ footer {
   }
 }
 
-/* ==================================================
-   SAFETY BAR
-   ================================================== */
+/* ---------- safety bar ---------- */
 .safety-bar {
   background: transparent;
   padding: 1.5rem 0 2rem;
@@ -629,9 +626,7 @@ footer {
   font-size: 1.25rem;
 }
 
-/* ==================================================
-   HOME PROJECTS Tweaks
-   ================================================== */
+/* ---------- home projects tweaks ---------- */
 .home-projects {
   padding-top: 2rem;
 }
@@ -640,9 +635,7 @@ footer {
   margin: 1rem 0 .5rem;
 }
 
-/* ==================================================
-   Zig-zag rows
-   ================================================== */
+/* ---------- zig-zag rows ---------- */
 .zigzag {
   padding: 4rem 0;
   background: var(--color-bg);
@@ -678,6 +671,7 @@ footer {
   color: var(--color-muted);
 }
 
+/* swap order every other row on wide screens */
 .zig-row:nth-child(even) .zig-media {
   order: 2;
 }
@@ -697,9 +691,7 @@ footer {
   }
 }
 
-/* ==================================================
-   Metrics stripe
-   ================================================== */
+/* ---------- metrics stripe ---------- */
 .metrics {
   background: var(--color-bg-light);
   padding: 3rem 0;
@@ -739,9 +731,7 @@ footer {
   }
 }
 
-/* ==================================================
-   Reveal-on-scroll
-   ================================================== */
+/* ---------- reveal-on-scroll ---------- */
 .reveal {
   opacity: 0;
   transform: translateY(18px);

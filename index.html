@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <!-- meta and css -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NGBLLC</title>
@@ -9,22 +10,24 @@
 </head>
 
 <body>
-
-    <!-- HERO FIRST -->
+    <!-- hero with background image injected via css var -->
     <section class="hero hero-home"
         style="--hero-img: url('https://cdn10.bostonmagazine.com/wp-content/uploads/sites/2/2020/01/boston-skyline-best-views-socail.jpg');">
-        <!-- Top overlay header on hero -->
+
+        <!-- header placed on top of hero -->
         <header class="hero-header">
             <div class="container header-row">
+                <!-- stacked brand mark -->
                 <div class="brand">
                     <div class="brand-main">NGB</div>
                     <div class="brand-sub">New Generation Builders</div>
                 </div>
 
-                <!-- mobile toggle must stay adjacent to label + nav -->
+                <!-- mobile menu: checkbox toggles slide-in panel -->
                 <input type="checkbox" id="menu-toggle" class="menu-toggle">
                 <label for="menu-toggle" class="menu-icon">&#9776;</label>
 
+                <!-- nav links (slide-in on mobile) -->
                 <nav class="nav-menu">
                     <ul class="nav-links">
                         <li><a href="under-construction.html">About</a></li>
@@ -37,25 +40,23 @@
             </div>
         </header>
 
-        <!-- Hero copy -->
+        <!-- hero text + primary cta -->
         <div class="hero-content">
             <h2>CONSTRUCTING THE FUTURE. BUILDING TRUST.</h2>
             <a href="contact.html" class="cta-button">Request Proposal</a>
         </div>
     </section>
 
-    <!-- Website Under Construction banner (moved below hero) -->
-    <!-- <section class="wip-banner uc">
-        <div class="container">
-            <h3>Website Under Construction</h3>
-        </div>
-    </section> -->
+    <!-- optional wip banner kept for later use
+  <section class="wip-banner uc">
+    <div class="container"><h3>Website Under Construction</h3></div>
+  </section> -->
 
-    <!-- VALUES STRIP (compact row on deep blue) -->
+    <!-- quick values strip under hero -->
     <section class="home-values-strip">
         <div class="container home-values-grid">
+            <!-- value pill -->
             <div class="values-item">
-                <div class="values-icon">💡</div>
                 <div class="values-text">
                     <h4>Innovation</h4>
                     <p>Ingenuity as an advantage.</p>
@@ -63,7 +64,6 @@
             </div>
 
             <div class="values-item">
-                <div class="values-icon">🛡️</div>
                 <div class="values-text">
                     <h4>Integrity</h4>
                     <p>Integrity is integrity.</p>
@@ -71,7 +71,6 @@
             </div>
 
             <div class="values-item">
-                <div class="values-icon">🤝</div>
                 <div class="values-text">
                     <h4>Impact</h4>
                     <p>Impacts are longevity.</p>
@@ -79,7 +78,6 @@
             </div>
 
             <div class="values-item">
-                <div class="values-icon">✅</div>
                 <div class="values-text">
                     <h4>Honesty</h4>
                     <p>Safety is non-negotiable.</p>
@@ -88,15 +86,14 @@
         </div>
     </section>
 
-    <!-- SAFETY COMMITMENT (single blue callout) -->
+    <!-- safety callout card -->
     <section class="safety-bar">
         <div class="container safety-inner">
-            <span class="safety-emoji">🦺</span>
             <p>We are committed to safety and quality in all aspects of our construction management.</p>
         </div>
     </section>
 
-    <!-- PROJECT PORTFOLIO (ambiguous preview images) -->
+    <!-- project gallery with neutral imagery -->
     <section class="projects home-projects">
         <div class="container">
             <h2 class="section-title">Project Portfolio</h2>
@@ -128,6 +125,7 @@
         </div>
     </section>
 
+    <!-- zig-zag service explainer rows with reveal on scroll -->
     <section class="zigzag">
         <div class="container">
             <article class="zig-row reveal">
@@ -165,8 +163,7 @@
         </div>
     </section>
 
-    <!-- Keep anything else you want under here (sections, etc.) -->
-
+    <!-- site footer -->
     <footer>
         <div class="container">
             <p>&copy; 2025 NGBLLC Construction. All rights reserved.</p>
@@ -174,12 +171,12 @@
     </footer>
 
     <script>
-        // Fade out splash after load and on first scroll
+        // fade out optional intro overlay if present (safe-optional)
         const overlay = document.querySelector('.intro-overlay');
         addEventListener('load', () => setTimeout(() => overlay?.classList.add('hide'), 900));
         addEventListener('scroll', () => overlay?.classList.add('hide'), { once: true });
 
-        // Reveal on scroll
+        // reveal elements when they enter viewport
         const io = new IntersectionObserver(es => {
             es.forEach(e => e.isIntersecting && e.target.classList.add('show'));
         }, { threshold: .15 });
