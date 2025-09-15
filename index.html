@@ -250,67 +250,36 @@
             <p>&copy; 2025 NGBLLC Construction. All rights reserved.</p>
         </div>
     </footer>
+    <!-- ---- native touch swipe (guarded autosnap) ---- -->
     <script>
         (() => {
             const scroller = document.querySelector('.project-grid');
             if (!scroller) return;
-            const cards = [...scroller.children];
-            const leftBtn = document.querySelector('.proj-arrow.left');
-            const rightBtn = document.querySelector('.proj-arrow.right');
 
-            // ---- mouse drag only (desktop) ----
-            let isDown = false, startX = 0, startLeft = 0, engaged = false;
-            const start = x => { isDown = true; engaged = false; startX = x; startLeft = scroller.scrollLeft; scroller.classList.add('dragging'); };
-            const move = (x, yDelta = 0) => {
-                if (!isDown) return;
-                const dx = x - startX;
-                // axis lock: require mostly-horizontal intent
-                if (!engaged && Math.abs(dx) < 8 && Math.abs(yDelta) < 8) return;
-                if (!engaged && Math.abs(dx) <= Math.abs(yDelta)) { cancel(); return; }
-                engaged = true;
-                scroller.scrollLeft = startLeft - dx;
-            };
-            const end = () => { if (!isDown) return; isDown = false; scroller.classList.remove('dragging'); snapToNearest(); };
-            const cancel = () => { isDown = false; scroller.classList.remove('dragging'); };
+            let userScrolling = false, snapTimer = 0;
 
-            scroller.addEventListener('mousedown', e => { start(e.pageX); e.preventDefault(); });
-            window.addEventListener('mousemove', e => move(e.pageX, e.movementY));
-            window.addEventListener('mouseup', end);
-
-            // ---- native touch swipe (no manual drag) ----
-            // auto-center after native scroll settles
-            let t = null;
-            scroller.addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(snapToNearest, 120); }, { passive: true });
-
-            // ---- wheel + keyboard ----
-            scroller.setAttribute('tabindex', '0');
-            scroller.addEventListener('wheel', e => {
-                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { scroller.scrollLeft += e.deltaY; e.preventDefault(); }
-            }, { passive: false });
+            // mark only real user intent
+            const markUser = () => { userScrolling = true; };
+            scroller.addEventListener('touchstart', markUser, { passive: true });
+            scroller.addEventListener('wheel', markUser, { passive: true });
             scroller.addEventListener('keydown', e => {
-                if (e.key === 'ArrowRight') step(1);
-                if (e.key === 'ArrowLeft') step(-1);
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') userScrolling = true;
             });
 
-            // ---- arrows ----
-            function step(dir) {
-                const mid = scroller.getBoundingClientRect().left + scroller.clientWidth / 2;
-                let i = cards.findIndex(c => { const r = c.getBoundingClientRect(); return r.left <= mid && r.right >= mid; });
-                if (i < 0) i = 0;
-                const target = cards[Math.min(cards.length - 1, Math.max(0, i + dir))];
-                target?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            }
-            leftBtn?.addEventListener('click', () => step(-1));
-            rightBtn?.addEventListener('click', () => step(1));
+            const snapIfUser = () => {
+                if (!userScrolling) return;
+                userScrolling = false;
+                snapToNearest(); // your existing function
+            };
 
-            function snapToNearest() {
-                const mid = scroller.getBoundingClientRect().left + scroller.clientWidth / 2;
-                let best = null, dmin = Infinity;
-                for (const c of cards) {
-                    const r = c.getBoundingClientRect(), d = Math.abs((r.left + r.width / 2) - mid);
-                    if (d < dmin) { dmin = d; best = c; }
-                }
-                best?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            if ('onscrollend' in window) {
+                scroller.addEventListener('scrollend', snapIfUser);
+            } else {
+                scroller.addEventListener('scroll', () => {
+                    if (!userScrolling) return;           // ignore layout/cached scrolls
+                    clearTimeout(snapTimer);
+                    snapTimer = setTimeout(snapIfUser, 140);
+                }, { passive: true });
             }
         })();
     </script>
