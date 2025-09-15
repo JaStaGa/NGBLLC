@@ -877,3 +877,53 @@ footer {
   flex-direction: column;
   line-height: 1
 }
+
+/* accordion hidden on desktop */
+.zig-accordion {
+  display: none;
+  background: var(--color-bg);
+  padding: 1rem 0 3rem;
+}
+
+@media (max-width:900px) {
+  .zigzag {
+    display: none;
+  }
+
+  /* hide zig-zag grid on mobile */
+  .zig-accordion {
+    display: block;
+  }
+}
+
+.zig-acc details {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: .9rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.zig-acc summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.zig-acc summary::-webkit-details-marker {
+  display: none;
+}
+
+.zig-acc .acc-body {
+  padding: .75rem 0 0;
+  color: var(--color-muted);
+  display: grid;
+  gap: .75rem;
+}
+
+.zig-acc img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
