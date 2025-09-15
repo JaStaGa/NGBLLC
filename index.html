@@ -42,7 +42,7 @@
 
         <!-- hero text + primary cta -->
         <div class="hero-content">
-            <h2>CONSTRUCTING THE FUTURE. BUILDING TRUST.</h2>
+            <h2>BUILDING WITH TRUST CONSTRUCTING THE FUTURE</h2>
             <a href="contact.html" class="cta-button">Request Proposal</a>
         </div>
     </section>
@@ -66,21 +66,21 @@
             <div class="values-item">
                 <div class="values-text">
                     <h4>Integrity</h4>
-                    <p>Integrity is integrity.</p>
+                    <p>Do the right thing when no one is watching.</p>
                 </div>
             </div>
 
             <div class="values-item">
                 <div class="values-text">
                     <h4>Impact</h4>
-                    <p>Impacts are longevity.</p>
+                    <p>Build work that lasts.</p>
                 </div>
             </div>
 
             <div class="values-item">
                 <div class="values-text">
                     <h4>Honesty</h4>
-                    <p>Safety is non-negotiable.</p>
+                    <p>Straight talk from estimate to turnover.</p>
                 </div>
             </div>
         </div>
@@ -121,6 +121,54 @@
                     <h3>Skyline Works</h3>
                     <p>A neutral, in-progress silhouette for concept builds.</p>
                 </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80"
+                        alt="Kitchen remodel">
+                    <h3>Kitchen Remodel</h3>
+                    <p>Open layout, shaker fronts, quartz counters, matte hardware.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1564540583246-934409427776?auto=format&fit=crop&w=1600&q=80"
+                        alt="Bright bathroom">
+                    <h3>Bright, Low-Maintenance Bath</h3>
+                    <p>Large-format tile, frameless glass, simple upkeep surfaces.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1600&q=80"
+                        alt="Rear addition">
+                    <h3>Seamless Rear Addition</h3>
+                    <p>New family room tied to existing envelope and roofline.</p>
+                </div>
+                <!-- <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1616596879258-6f8b0a69a3cd?auto=format&fit=crop&w=1600&q=80"
+                        alt="Wide plank floors">
+                    <h3>Wide-Plank Oak Floors</h3>
+                    <p>Site-finished oak in natural oil for warm, durable traffic areas.</p>
+                </div> -->
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1597047084897-51e81819a499?auto=format&fit=crop&w=1600&q=80"
+                        alt="Composite deck">
+                    <h3>Composite Deck Upgrade</h3>
+                    <p>Hidden fasteners, aluminum rail, low-maintenance surface.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1600&q=80"
+                        alt="Basement family room">
+                    <h3>Basement Family Room</h3>
+                    <p>Rigid foam + drywall, LVP flooring, recessed lighting.</p>
+                </div>
+                <!-- <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1530041539828-114de6693900?auto=format&fit=crop&w=1600&q=80"
+                        alt="Entryway refresh">
+                    <h3>Modern Entryway</h3>
+                    <p>New door system, sidelights, stone stoop, low-voltage lighting.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1581092795578-0a9b7a7fd3b2?auto=format&fit=crop&w=1600&q=80"
+                        alt="Siding replacement">
+                    <h3>Exterior Siding Replacement</h3>
+                    <p>Fiber-cement panels with rainscreen and color-matched trims.</p>
+                </div> -->
             </div>
         </div>
     </section>
@@ -182,6 +230,69 @@
         }, { threshold: .15 });
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </script>
+
+    <script>
+        (() => {
+            const scroller = document.querySelector('.project-grid');
+            if (!scroller) return;
+
+            let isDown = false, startX = 0, startLeft = 0;
+
+            const down = x => {
+                isDown = true;
+                startX = x;
+                startLeft = scroller.scrollLeft;
+                scroller.classList.add('dragging');
+            };
+            const move = x => {
+                if (!isDown) return;
+                const dx = x - startX;
+                scroller.scrollLeft = startLeft - dx;
+            };
+            const up = () => {
+                isDown = false;
+                scroller.classList.remove('dragging');
+            };
+
+            // mouse
+            scroller.addEventListener('mousedown', e => { down(e.pageX); e.preventDefault(); });
+            window.addEventListener('mousemove', e => move(e.pageX));
+            window.addEventListener('mouseup', up);
+            scroller.addEventListener('mouseleave', up);
+
+            // touch
+            scroller.addEventListener('touchstart', e => {
+                if (e.touches.length !== 1) return;
+                down(e.touches[0].pageX);
+            }, { passive: true });
+            scroller.addEventListener('touchmove', e => {
+                if (!isDown || e.touches.length !== 1) return;
+                move(e.touches[0].pageX);
+                e.preventDefault(); // allow horizontal drag without vertical scroll
+            }, { passive: false });
+            scroller.addEventListener('touchend', up);
+        })();
+    </script>
+
+    <script>
+        // wheel -> horizontal scroll + keyboard arrows
+        (() => {
+            const scroller = document.querySelector('.project-grid');
+            if (!scroller) return;
+            scroller.setAttribute('tabindex', '0');
+            scroller.addEventListener('wheel', e => {
+                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                    scroller.scrollLeft += e.deltaY;
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            scroller.addEventListener('keydown', e => {
+                if (e.key === 'ArrowRight') scroller.scrollBy({ left: 320, behavior: 'smooth' });
+                if (e.key === 'ArrowLeft') scroller.scrollBy({ left: -320, behavior: 'smooth' });
+            });
+        })();
+    </script>
+
 </body>
 
 </html>
