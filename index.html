@@ -97,6 +97,8 @@
     <section class="projects home-projects">
         <div class="container">
             <h2 class="section-title">Project Portfolio</h2>
+            <button class="proj-arrow left" aria-label="Previous">&#10094;</button>
+            <button class="proj-arrow right" aria-label="Next">&#10095;</button>
             <div class="project-grid">
                 <div class="project-card">
                     <img src="https://as1.ftcdn.net/jpg/03/05/50/86/1000_F_305508687_6aqst6Jq9KXHl9bm3mShJFqX48M3LSoI.jpg"
@@ -275,21 +277,69 @@
     </script>
 
     <script>
-        // wheel -> horizontal scroll + keyboard arrows
         (() => {
             const scroller = document.querySelector('.project-grid');
             if (!scroller) return;
+            const cards = Array.from(scroller.children);
+            const leftBtn = document.querySelector('.proj-arrow.left');
+            const rightBtn = document.querySelector('.proj-arrow.right');
+
+            // ---- drag to scroll ----
+            let isDown = false, startX = 0, startLeft = 0;
+            const down = x => { isDown = true; startX = x; startLeft = scroller.scrollLeft; scroller.classList.add('dragging'); };
+            const move = x => { if (!isDown) return; scroller.scrollLeft = startLeft - (x - startX); };
+            const up = () => { if (!isDown) return; isDown = false; scroller.classList.remove('dragging'); snapToNearest(); };
+
+            scroller.addEventListener('mousedown', e => { down(e.pageX); e.preventDefault(); });
+            window.addEventListener('mousemove', e => move(e.pageX));
+            window.addEventListener('mouseup', up);
+            scroller.addEventListener('mouseleave', up);
+
+            scroller.addEventListener('touchstart', e => { if (e.touches.length === 1) down(e.touches[0].pageX); }, { passive: true });
+            scroller.addEventListener('touchmove', e => { if (isDown && e.touches.length === 1) { move(e.touches[0].pageX); e.preventDefault(); } }, { passive: false });
+            scroller.addEventListener('touchend', up);
+
+            // ---- wheel horizontal + keyboard ----
             scroller.setAttribute('tabindex', '0');
             scroller.addEventListener('wheel', e => {
-                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-                    scroller.scrollLeft += e.deltaY;
-                    e.preventDefault();
-                }
+                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { scroller.scrollLeft += e.deltaY; e.preventDefault(); }
             }, { passive: false });
             scroller.addEventListener('keydown', e => {
-                if (e.key === 'ArrowRight') scroller.scrollBy({ left: 320, behavior: 'smooth' });
-                if (e.key === 'ArrowLeft') scroller.scrollBy({ left: -320, behavior: 'smooth' });
+                if (e.key === 'ArrowRight') step(1);
+                if (e.key === 'ArrowLeft') step(-1);
             });
+
+            // ---- auto-center on scroll end ----
+            let t = null;
+            scroller.addEventListener('scroll', () => {
+                if (isDown) return;
+                clearTimeout(t);
+                t = setTimeout(snapToNearest, 80);
+            }, { passive: true });
+
+            function snapToNearest() {
+                const mid = scroller.getBoundingClientRect().left + scroller.clientWidth / 2;
+                let best = null, dmin = Infinity;
+                for (const c of cards) {
+                    const r = c.getBoundingClientRect();
+                    const d = Math.abs((r.left + r.width / 2) - mid);
+                    if (d < dmin) { dmin = d; best = c; }
+                }
+                best?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+
+            // ---- arrows ----
+            function step(dir) {
+                const mid = scroller.getBoundingClientRect().left + scroller.clientWidth / 2;
+                let idx = cards.findIndex(c => {
+                    const r = c.getBoundingClientRect(); return r.left <= mid && r.right >= mid;
+                });
+                if (idx < 0) idx = 0;
+                const target = cards[Math.min(cards.length - 1, Math.max(0, idx + dir))];
+                target?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+            leftBtn?.addEventListener('click', () => step(-1));
+            rightBtn?.addEventListener('click', () => step(1));
         })();
     </script>
 
