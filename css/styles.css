@@ -459,14 +459,24 @@ footer {
 }
 
 .project-grid {
-  cursor: grab;
+  --card-w: clamp(240px, 30vw, 320px);
   display: flex;
   gap: 1.25rem;
   overflow-x: auto;
   padding: .5rem .25rem 1rem;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  touch-action: pan-y;
+  /* center snap on iOS too */
+  scroll-padding-inline: calc((100% - var(--card-w)) / 2);
+}
+
+.project-grid::before,
+.project-grid::after {
+  content: "";
+  flex: 0 0 max(0px, calc((100% - var(--card-w)) / 2));
 }
 
 .project-grid::-webkit-scrollbar {
@@ -490,14 +500,14 @@ footer {
 }
 
 .project-card {
-  flex: 0 0 clamp(240px, 30vw, 320px);
+  flex: 0 0 var(--card-w);
   background: var(--bg-light);
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border);
   box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
   transition: transform .3s, box-shadow .3s;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
 }
 
 .project-card img {
