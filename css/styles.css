@@ -480,3 +480,76 @@ body {
     font-size: .80rem;
   }
 }
+
+/* --- Under Construction overlay --- */
+.uc-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.uc-card {
+  background: #fff;
+  width: min(520px, 92vw);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  padding: 1.5rem;
+  text-align: center;
+  animation: uc-fade-in 200ms ease-out;
+}
+
+.uc-card h3 {
+  color: var(--blue-900);
+  margin-bottom: 0.5rem;
+}
+
+.uc-card p {
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.uc-card a {
+  color: var(--blue-700);
+  text-decoration: underline;
+}
+
+.uc-card button {
+  background: var(--blue-600);
+  color: #fff;
+  border: 0;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.uc-card button:hover {
+  filter: brightness(0.95);
+}
+
+@keyframes uc-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* overlay closed state + body lock */
+.uc-overlay.hidden {
+  display: none;
+}
+
+body.uc-locked {
+  overflow: hidden;
+}

@@ -284,6 +284,54 @@
         })();
     </script>
 
+    <!-- Under Construction overlay -->
+    <div id="uc-overlay" class="uc-overlay" role="dialog" aria-modal="true" aria-labelledby="uc-title">
+        <div class="uc-card">
+            <h3 id="uc-title">Website Under Construction</h3>
+            <p>
+                Thanks for visiting New Generation Builders. Our website is currently being updated, so some pages and
+                features may be incomplete.
+                For inquiries, please reach us at <a href="mailto:info@ngbllc.com">info@ngbllc.com</a>.
+            </p>
+            <button type="button" id="uc-continue">Continue to site</button>
+        </div>
+    </div>
+
+    <script>
+        (() => {
+            const OVERLAY_ID = 'uc-overlay';
+            const STORAGE_KEY = 'ucDismissed';
+
+            const overlay = document.getElementById(OVERLAY_ID);
+            const btn = document.getElementById('uc-continue');
+            const returnFocus = document.querySelector('.cta-button') || document.body;
+
+            const show = () => {
+                overlay.classList.remove('hidden');
+                document.body.classList.add('uc-locked');
+                btn?.focus();
+            };
+
+            const hide = () => {
+                overlay.classList.add('hidden');
+                document.body.classList.remove('uc-locked');
+                localStorage.setItem(STORAGE_KEY, '1');
+                returnFocus.focus();
+            };
+
+            document.addEventListener('DOMContentLoaded', () => {
+                if (!localStorage.getItem(STORAGE_KEY)) show();
+                else overlay.classList.add('hidden');
+            });
+
+            btn?.addEventListener('click', hide);
+            overlay?.addEventListener('click', (e) => { if (e.target === overlay) hide(); });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !overlay.classList.contains('hidden')) hide();
+            });
+        })();
+    </script>
+
 </body>
 
 </html>
