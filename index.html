@@ -254,33 +254,100 @@
     <script>
         (() => {
             const scroller = document.querySelector('.project-grid');
-            if (!scroller) return;
+            const left = document.querySelector('.proj-arrow.left');
+            const right = document.querySelector('.proj-arrow.right');
+            if (!scroller || !left || !right) return;
 
-            let userScrolling = false, snapTimer = 0;
+            // --- helpers ---------------------------------------------------------------
+            const cards = () => Array.from(scroller.querySelectorAll('.project-card'));
 
-            // mark only real user intent
-            const markUser = () => { userScrolling = true; };
-            scroller.addEventListener('touchstart', markUser, { passive: true });
-            scroller.addEventListener('wheel', markUser, { passive: true });
-            scroller.addEventListener('keydown', e => {
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') userScrolling = true;
+            // compute the scrollLeft that centers a given card
+            function scrollLeftForCardCenter(card) {
+                const sRect = scroller.getBoundingClientRect();
+                const cRect = card.getBoundingClientRect();
+                const current = scroller.scrollLeft;
+                const sCenter = sRect.left + sRect.width / 2;
+                const cCenter = cRect.left + cRect.width / 2;
+                // delta in pixels within the viewport equals needed scroll delta
+                return current + (cCenter - sCenter);
+            }
+
+            // return the card whose center is closest to scroller center
+            function nearestCard() {
+                const sRect = scroller.getBoundingClientRect();
+                const sCenter = sRect.left + sRect.width / 2;
+                let best = null, bestDist = Infinity;
+                for (const card of cards()) {
+                    const r = card.getBoundingClientRect();
+                    const cCenter = r.left + r.width / 2;
+                    const d = Math.abs(cCenter - sCenter);
+                    if (d < bestDist) { bestDist = d; best = card; }
+                }
+                return best;
+            }
+
+            // highlight only the centered card
+            function applyCenterHighlight() {
+                const target = nearestCard();
+                if (!target) return;
+                for (const card of cards()) {
+                    if (card === target) card.classList.add('is-center');
+                    else card.classList.remove('is-center');
+                }
+            }
+
+            // --- required export: snapToNearest ---------------------------------------
+            // centers the closest card and updates highlight
+            function snapToNearest() {
+                const target = nearestCard();
+                if (!target) return;
+                scroller.scrollTo({ left: scrollLeftForCardCenter(target), behavior: 'smooth' });
+                // update highlight immediately (and again after settle)
+                applyCenterHighlight();
+                // settle highlight after smooth scroll completes
+                setTimeout(applyCenterHighlight, 260);
+            }
+            // make available to any other script if needed
+            window.snapToNearest = snapToNearest;
+
+            // --- arrows ---------------------------------------------------------------
+            const step = () => scroller.clientWidth * 0.85;
+            left.addEventListener('click', () => {
+                scroller.scrollBy({ left: -step(), behavior: 'smooth' });
+                // after user action, snap to nearest card
+                setTimeout(snapToNearest, 220);
+            });
+            right.addEventListener('click', () => {
+                scroller.scrollBy({ left: step(), behavior: 'smooth' });
+                setTimeout(snapToNearest, 220);
             });
 
-            const snapIfUser = () => {
-                if (!userScrolling) return;
-                userScrolling = false;
-                snapToNearest(); // your existing function
-            };
-
-            if ('onscrollend' in window) {
-                scroller.addEventListener('scrollend', snapIfUser);
-            } else {
-                scroller.addEventListener('scroll', () => {
-                    if (!userScrolling) return;           // ignore layout/cached scrolls
-                    clearTimeout(snapTimer);
-                    snapTimer = setTimeout(snapIfUser, 140);
-                }, { passive: true });
+            // --- scroll-end detection --------------------------------------------------
+            let t = 0, rafScheduled = false;
+            function onScroll() {
+                if (!rafScheduled) {
+                    rafScheduled = true;
+                    requestAnimationFrame(() => {
+                        rafScheduled = false;
+                        applyCenterHighlight();
+                    });
+                }
+                clearTimeout(t);
+                t = setTimeout(snapToNearest, 140); // fallback "scrollend"
             }
+            scroller.addEventListener('scroll', onScroll, { passive: true });
+            if ('onscrollend' in window) {
+                scroller.addEventListener('scrollend', snapToNearest);
+            }
+
+            // --- init ------------------------------------------------------------------
+            // ensure one card is centered and visible on load and on resize
+            function initCenter() {
+                snapToNearest();
+            }
+            window.addEventListener('load', initCenter);
+            window.addEventListener('resize', () => { applyCenterHighlight(); setTimeout(snapToNearest, 50); });
+
         })();
     </script>
 

@@ -320,14 +320,21 @@ body {
 }
 
 .project-card {
+  opacity: 0;
   flex: 0 0 var(--card-w);
   background: var(--bg-light);
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border);
   box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
-  transition: transform .3s, box-shadow .3s;
+  transition: transform .3s, box-shadow .3s, opacity .25s;
   scroll-snap-align: center;
+  pointer-events: none;
+}
+
+.project-card.is-center {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .project-card img {
