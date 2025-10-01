@@ -10,6 +10,20 @@
 </head>
 
 <body>
+    <div class="theme-switcher" role="navigation" aria-label="Theme switcher">
+        <details id="themeDetails">
+            <summary>Edit Colors</summary>
+            <div class="theme-menu">
+                <button type="button" class="theme-btn" data-theme="t1">Theme 1</button>
+                <button type="button" class="theme-btn" data-theme="t2">Theme 2</button>
+                <button type="button" class="theme-btn" data-theme="t3">Theme 3</button>
+                <button type="button" class="theme-btn" data-theme="t4">Theme 4</button>
+                <button type="button" class="theme-btn" data-theme="t5">Theme 5</button>
+                <button type="button" class="theme-btn" data-theme="t6">Theme 6</button>
+            </div>
+        </details>
+    </div>
+
     <!-- hero with background image injected via css var -->
     <section class="hero hero-home"
         style="--hero-img: url('https://cdn10.bostonmagazine.com/wp-content/uploads/sites/2/2020/01/boston-skyline-best-views-socail.jpg');">
@@ -395,6 +409,30 @@
             overlay?.addEventListener('click', (e) => { if (e.target === overlay) hide(); });
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && !overlay.classList.contains('hidden')) hide();
+            });
+        })();
+    </script>
+
+    <script>
+        (() => {
+            const KEY = 'ngbThemeName';
+            const root = document.documentElement;
+            const saved = localStorage.getItem(KEY) || 't1';
+
+            const setActive = (name) => {
+                root.setAttribute('data-theme', name);
+                localStorage.setItem(KEY, name);
+                document.querySelectorAll('.theme-btn').forEach(b => {
+                    b.setAttribute('aria-current', b.dataset.theme === name ? 'true' : 'false');
+                });
+            };
+
+            setActive(saved);
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setActive(btn.dataset.theme);
+                    document.getElementById('themeDetails')?.removeAttribute('open');
+                });
             });
         })();
     </script>
