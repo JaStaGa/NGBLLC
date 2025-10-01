@@ -308,8 +308,9 @@ body {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   cursor: grab;
-  touch-action: pan-y;
+  touch-action: pan-x pinch-zoom;
   scroll-padding-inline: calc((100% - var(--card-w)) / 2);
+  overscroll-behavior-inline: contain;
 }
 
 .project-grid::before,
