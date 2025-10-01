@@ -1,95 +1,128 @@
-/* ---------- variables and reset ---------- */
+/* =========================
+   DESIGN TOKENS (BASE)
+   ========================= */
 :root {
+  /* Brand spectrum (used by some comps; themes can remap freely) */
   --blue-900: #0b1f3b;
   --blue-800: #11335e;
   --blue-700: #18497f;
   --blue-600: #1e5fb0;
   --blue-300: #e6f0ff;
-  --gold: #f4d35e;
-  --text: #333;
-  --muted: #556070;
-  --bg: #fff;
+
+  /* Semantic palette (themes should mainly override these) */
+  --bg: #ffffff;
+  /* page canvas */
   --bg-light: #f7f7f7;
-  --border: #ddd;
-  --hero-overlay: rgba(0, 0, 0, .45);
-  --color-bg: #fff;
-  --color-bg-light: #f7f9fc;
-  --color-border: #e6eaf1;
+  /* cards / surfaces */
+  --text: #333333;
+  /* primary text */
+  --muted: #556070;
+  /* secondary text */
+  --border: #e6eaf1;
+  /* hairlines */
+
   --color-primary: var(--blue-900);
+  /* headings, brand ink */
   --color-secondary: var(--blue-600);
+  /* CTAs, accents */
+  --accent: #f4d35e;
+  /* optional highlight */
+
+  /* Component helpers */
+  --hero-overlay: rgba(0, 0, 0, .45);
+  --hero-fg: #ffffff;
+  /* text atop hero */
+  --surface: var(--bg-light);
+  /* generic surface */
+  --on-surface: var(--text);
+  /* text atop surface */
+  --button-bg: var(--color-secondary);
+  --button-fg: #ffffff;
+  --nav-bg: var(--blue-900);
+  --nav-link: #ffffff;
+  --nav-link-hover: var(--accent);
+  --switcher-ink: var(--hero-fg);
+
+  /* Back-compat aliases (older selectors reference these) */
+  --color-bg: var(--bg);
+  --color-bg-light: var(--bg-light);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
 }
 
+/* ========== Reset / Base ========== */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'Segoe UI', sans-serif;
   color: var(--text);
   background: var(--bg);
-  line-height: 1.6
+  line-height: 1.6;
 }
 
 .container {
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
-/* ---------- hero ---------- */
+/* ========== Hero ========== */
 .hero {
   background: var(--hero-img) no-repeat center/cover;
-  color: #fff;
+  color: var(--hero-fg);
   height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  text-align: center
+  text-align: center;
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--hero-overlay)
+  background: var(--hero-overlay);
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 900px
+  max-width: 900px;
 }
 
 .hero h2 {
   font-size: 3rem;
   margin-bottom: 1.25rem;
-  letter-spacing: .5px
+  letter-spacing: .5px;
 }
 
 .hero p {
   font-size: 1.2rem;
-  margin-bottom: 2rem
+  margin-bottom: 2rem;
 }
 
+/* ========== CTA Button ========== */
 .cta-button {
-  background: var(--blue-600);
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button-fg);
   padding: .85rem 1.6rem;
   border-radius: 6px;
   font-weight: 700;
   text-decoration: none;
-  transition: transform .2s, filter .2s
+  transition: transform .2s, filter .2s, box-shadow .2s;
 }
 
 .cta-button:hover {
   transform: translateY(-2px);
-  filter: brightness(.95)
+  filter: brightness(0.97);
 }
 
-/* ---------- header + nav ---------- */
+/* ========== Header + Nav ========== */
 .hero-header {
   position: absolute;
   top: 0;
@@ -97,86 +130,86 @@ body {
   width: 100%;
   padding: 1rem 0;
   z-index: 20;
-  background: transparent
+  background: transparent;
 }
 
 .header-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem
+  gap: 1rem;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: .6rem;
-  text-decoration: none
+  text-decoration: none;
 }
 
 .brand-logo {
   width: 100px;
   height: 100px;
   border-radius: 6px;
-  display: block
+  display: block;
 }
 
 .brand-text {
   display: flex;
   flex-direction: column;
-  line-height: 1
+  line-height: 1;
 }
 
 .brand-main {
   font-size: 1.8rem;
   font-weight: 800;
-  color: #fff
+  color: var(--hero-fg);
 }
 
 .brand-sub {
   font-size: .9rem;
-  color: #e6e6e6;
-  margin-top: .15rem
+  color: rgba(255, 255, 255, .9);
+  margin-top: .15rem;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2rem
+  gap: 2rem;
 }
 
 .nav-links a {
-  color: #fff;
+  color: var(--nav-link);
   text-decoration: none;
   font-weight: 600;
   letter-spacing: .2px;
-  transition: color .2s
+  transition: color .2s;
 }
 
 .nav-links a:hover {
-  color: var(--gold)
+  color: var(--nav-link-hover);
 }
 
 .menu-toggle {
   position: absolute;
-  left: -9999px
+  left: -9999px;
 }
 
 .menu-icon {
   display: none;
   font-size: 2rem;
-  color: #fff;
-  cursor: pointer
+  color: var(--hero-fg);
+  cursor: pointer;
 }
 
-/* ---------- mobile nav ---------- */
+/* ========== Mobile Nav ========== */
 @media (max-width:750px) {
   .menu-icon {
     display: block;
     margin-left: auto;
     order: 2;
     z-index: 20;
-    padding: .25rem .5rem
+    padding: .25rem .5rem;
   }
 
   .nav-menu {
@@ -186,22 +219,22 @@ body {
     height: 100vh;
     width: 78vw;
     max-width: 320px;
-    background: var(--blue-900);
+    background: var(--nav-bg);
     padding: 5rem 1.25rem 2rem;
     box-shadow: -12px 0 30px rgba(0, 0, 0, .35);
     transform: translateX(100%);
     transition: transform .3s ease;
-    z-index: 15
+    z-index: 15;
   }
 
   .nav-links {
     flex-direction: column;
     gap: 1rem;
-    align-items: flex-start
+    align-items: flex-start;
   }
 
   .menu-toggle:checked+.menu-icon+.nav-menu {
-    transform: translateX(0)
+    transform: translateX(0);
   }
 
   .hero:has(#menu-toggle:checked)::after {
@@ -209,87 +242,87 @@ body {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, .35);
-    z-index: 12
+    z-index: 12;
   }
 
   body:has(#menu-toggle:checked) {
-    overflow: hidden
+    overflow: hidden;
   }
 
   .hero h2 {
-    font-size: 2rem
+    font-size: 2rem;
   }
 
   .hero p {
-    font-size: 1rem
+    font-size: 1rem;
   }
 
   .cta-button {
     font-size: 1rem;
-    padding: .65rem 1.2rem
+    padding: .65rem 1.2rem;
   }
 }
 
-/* ---------- values strip ---------- */
+/* ========== Values Strip ========== */
 .home-values-strip {
   background: var(--blue-900);
-  color: #fff;
-  padding: 1.25rem 0
+  color: var(--hero-fg);
+  padding: 1.25rem 0;
 }
 
 .home-values-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.25rem
+  gap: 1.25rem;
 }
 
 .values-item {
   display: flex;
   align-items: center;
   gap: .75rem;
-  background: rgba(255, 255, 255, .06);
-  border: 1px solid rgba(255, 255, 255, .12);
+  background: color-mix(in srgb, #fff 6%, transparent);
+  border: 1px solid color-mix(in srgb, #fff 12%, transparent);
   border-radius: 10px;
-  padding: .9rem 1rem
+  padding: .9rem 1rem;
 }
 
 .values-text h4 {
   font-size: 1rem;
   margin-bottom: .15rem;
-  font-weight: 700
+  font-weight: 700;
 }
 
 .values-text p {
   font-size: .85rem;
-  color: #e9eef6
+  color: #e9eef6;
 }
 
-/* ---------- safety ---------- */
+/* ========== Safety Bar ========== */
 .safety-bar {
   background: transparent;
-  padding: 1.5rem 0 2rem
+  padding: 1.5rem 0 2rem;
 }
 
 .safety-inner {
   background: var(--blue-800);
-  color: #fff;
+  color: var(--hero-fg);
   border-radius: 12px;
   padding: 1rem 1.25rem;
   display: flex;
   align-items: center;
   gap: .75rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, .12)
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
 }
 
-/* ---------- projects ---------- */
+/* ========== Projects ========== */
 .projects {
   padding: 4rem 1rem;
   background: var(--bg);
-  text-align: center
+  text-align: center;
 }
 
 .projects .container {
-  position: relative
+  position: relative;
 }
 
 .project-grid {
@@ -303,55 +336,56 @@ body {
   -webkit-overflow-scrolling: touch;
   cursor: grab;
   touch-action: pan-x pinch-zoom;
-  scroll-padding-inline: calc((100% - var(--card-w))/2);
-  overscroll-behavior-inline: contain
+  scroll-padding-inline: calc((100% - var(--card-w)) / 2);
+  overscroll-behavior-inline: contain;
 }
 
 .project-grid::before,
 .project-grid::after {
   content: "";
-  flex: 0 0 calc((100% - var(--card-w))/2)
+  flex: 0 0 calc((100% - var(--card-w)) / 2);
 }
 
 .project-card {
   opacity: 0;
   flex: 0 0 var(--card-w);
-  background: var(--bg-light);
+  background: var(--surface);
+  color: var(--on-surface);
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border);
   box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
   transition: transform .3s, box-shadow .3s, opacity .25s;
   scroll-snap-align: center;
-  pointer-events: none
+  pointer-events: none;
 }
 
 .project-card.is-center {
   opacity: 1;
-  pointer-events: auto
+  pointer-events: auto;
 }
 
 .project-card img {
   width: 100%;
   height: 200px;
-  object-fit: cover
+  object-fit: cover;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .15)
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
 }
 
 .project-card h3 {
   margin: 1rem 0 .5rem;
   font-size: 1.25rem;
-  color: var(--blue-900)
+  color: var(--color-primary);
 }
 
 .project-card p {
   padding: 0 1rem 1rem;
   font-size: .95rem;
-  color: var(--muted)
+  color: var(--muted);
 }
 
 .proj-arrow {
@@ -362,27 +396,27 @@ body {
   height: 40px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: var(--bg-light);
+  background: var(--surface);
   box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
   display: grid;
   place-items: center;
   cursor: pointer;
-  z-index: 3
+  z-index: 3;
 }
 
 .proj-arrow.left {
-  left: -18px
+  left: -18px;
 }
 
 .proj-arrow.right {
-  right: -18px
+  right: -18px;
 }
 
-/* ---------- zig/accordion ---------- */
+/* ========== Zig-Zag vs Accordion ========== */
 .zigzag {
   display: block;
   padding: 4rem 0;
-  background: var(--color-bg)
+  background: var(--color-bg);
 }
 
 .zig-row {
@@ -391,99 +425,99 @@ body {
   gap: 2rem;
   align-items: center;
   padding: 2rem 0;
-  border-bottom: 1px solid var(--color-border)
+  border-bottom: 1px solid var(--color-border);
 }
 
 .zig-row:last-child {
-  border-bottom: none
+  border-bottom: none;
 }
 
 .zig-row:nth-child(even) .zig-media {
-  order: 2
+  order: 2;
 }
 
 .zig-row:nth-child(even) .zig-copy {
-  order: 1
+  order: 1;
 }
 
 .zig-media img {
   width: 100%;
-  border-radius: 8px
+  border-radius: 8px;
 }
 
 .zig-copy h3 {
   color: var(--color-primary);
   font-size: 1.6rem;
-  margin-bottom: .5rem
+  margin-bottom: .5rem;
 }
 
 .zig-copy p {
-  color: var(--color-muted)
+  color: var(--color-muted);
 }
 
 .zig-accordion {
   display: none;
   background: var(--color-bg);
-  padding: 1rem 0 3rem
+  padding: 1rem 0 3rem;
 }
 
 @media (max-width:768px) {
   .zigzag {
-    display: none
+    display: none;
   }
 
   .zig-accordion {
-    display: block
+    display: block;
   }
 }
 
 .zig-acc details {
-  background: var(--bg-light);
+  background: var(--surface);
   border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: .9rem 1rem;
-  margin-bottom: 1rem
+  margin-bottom: 1rem;
 }
 
 .zig-acc summary {
   cursor: pointer;
   font-weight: 700;
-  color: var(--color-primary)
+  color: var(--color-primary);
 }
 
 .zig-acc .acc-body {
   padding: 1rem 0 0;
   color: var(--color-muted);
   display: grid;
-  gap: .75rem
+  gap: .75rem;
 }
 
 .zig-acc img {
   width: 100%;
-  border-radius: 8px
+  border-radius: 8px;
 }
 
-/* ---------- mobile values grid ---------- */
+/* ========== Mobile adjustments for values grid ========== */
 @media (max-width:520px) {
   .home-values-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .9rem
+    gap: .9rem;
   }
 
   .values-item {
-    padding: .75rem .8rem
+    padding: .75rem .8rem;
   }
 
   .values-text h4 {
-    font-size: .95rem
+    font-size: .95rem;
   }
 
   .values-text p {
-    font-size: .8rem
+    font-size: .80rem;
   }
 }
 
-/* ---------- Under-Construction overlay ---------- */
+/* ========== Under Construction Overlay ========== */
 .uc-overlay {
   position: fixed;
   inset: 0;
@@ -492,77 +526,78 @@ body {
   justify-content: center;
   background: rgba(0, 0, 0, .6);
   z-index: 1000;
-  padding: 1rem
+  padding: 1rem;
 }
 
 .uc-card {
-  background: var(--bg-light);
+  background: var(--surface);
+  color: var(--on-surface);
   width: min(520px, 92vw);
   border-radius: 12px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, .28);
   padding: 1.5rem;
   text-align: center;
-  animation: uc-fade-in 200ms ease-out
+  animation: uc-fade-in 200ms ease-out;
 }
 
 .uc-card h3 {
-  color: var(--blue-900);
-  margin-bottom: .5rem
+  color: var(--color-primary);
+  margin-bottom: .5rem;
 }
 
 .uc-card p {
   color: var(--color-muted);
   margin-bottom: 1rem;
-  line-height: 1.5
+  line-height: 1.5;
 }
 
 .uc-card a {
-  color: var(--blue-700);
-  text-decoration: underline
+  color: var(--color-secondary);
+  text-decoration: underline;
 }
 
 .uc-card button {
-  background: var(--blue-600);
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button-fg);
   border: 0;
   padding: .7rem 1.2rem;
   border-radius: 8px;
   font-weight: 700;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .uc-card button:hover {
-  filter: brightness(.95)
+  filter: brightness(0.95);
 }
 
 @keyframes uc-fade-in {
   from {
     opacity: 0;
-    transform: translateY(6px)
+    transform: translateY(6px);
   }
 
   to {
     opacity: 1;
-    transform: none
+    transform: none;
   }
 }
 
 .uc-overlay.hidden {
-  display: none
+  display: none;
 }
 
 body.uc-locked {
-  overflow: hidden
+  overflow: hidden;
 }
 
-/* ---------- Theme switcher ---------- */
+/* ========== Theme Switcher UI ========== */
 .theme-switcher {
   position: fixed;
   top: 6px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1100;
-  font: 600 14px/1.2 Segoe UI, sans-serif
+  font: 600 14px/1.2 Segoe UI, sans-serif;
 }
 
 .theme-switcher details {
@@ -571,44 +606,100 @@ body.uc-locked {
   border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: .5rem .75rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .08)
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
 }
 
 .theme-switcher summary {
   list-style: none;
   cursor: pointer;
-  color: #fff
+  color: var(--switcher-ink);
 }
 
 .theme-switcher summary::-webkit-details-marker {
-  display: none
+  display: none;
 }
 
 .theme-menu {
   margin-top: .5rem;
   display: grid;
-  gap: .35rem
+  gap: .35rem;
 }
 
 .theme-btn {
   display: block;
   width: 100%;
   text-align: left;
-  background: var(--bg-light);
+  background: var(--surface);
+  color: var(--on-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: .45rem .6rem;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .theme-btn[aria-current="true"] {
   font-weight: 800;
   text-decoration: underline;
   outline: 2px solid var(--color-secondary);
-  background: #fff
+  outline-offset: 1px;
+  background: var(--surface);
 }
 
-/* ================== THEMES ================== */
+/* =========================
+   THEME OVERRIDES (examples)
+   Keep your existing t1–t6 blocks here; they now
+   only need to set semantic tokens above.
+   ========================= */
+
+/* t1 — Baseline (unchanged sample) */
+:root[data-theme="t1"] {
+  --blue-900: #0b1f3b;
+  --blue-800: #11335e;
+  --blue-700: #18497f;
+  --blue-600: #1e5fb0;
+  --blue-300: #e6f0ff;
+  --bg: #fff;
+  --bg-light: #f7f7f7;
+  --text: #333;
+  --muted: #556070;
+  --border: #e6eaf1;
+  --color-primary: var(--blue-900);
+  --color-secondary: var(--blue-600);
+  --hero-overlay: rgba(0, 0, 0, .45);
+  --hero-fg: #fff;
+  --nav-bg: var(--blue-900);
+  --nav-link: #fff;
+  --nav-link-hover: var(--accent);
+}
+
+/* t2 — Deep Night (example shows dark remaps you already use) */
+:root[data-theme="t2"] {
+  --blue-900: #091225;
+  --blue-800: #0c1a34;
+  --blue-700: #153055;
+  --blue-600: #3b82f6;
+  --blue-300: #beddff;
+  --bg: #0a0f19;
+  --bg-light: #101827;
+  --text: #e8edf5;
+  --muted: #a7b4c8;
+  --border: #1f2a40;
+  --color-primary: #9fccff;
+  --color-secondary: #3b82f6;
+  --hero-overlay: rgba(0, 0, 0, .62);
+  --hero-fg: #eaf2ff;
+  --nav-bg: #0a0f19;
+  --nav-link: #eaf2ff;
+  --nav-link-hover: #9fccff;
+  --button-bg: #3b82f6;
+  --button-fg: #0a0f19;
+  --surface: var(--bg-light);
+  --on-surface: var(--text);
+}
+
+/* t3–t6: keep your improved themes; just ensure they set
+   semantic tokens like --bg/--text/--surface/etc. */
+/* ================== THEMES (drop-in) ================== */
 /* t1 — Baseline */
 :root[data-theme="t1"] {
   --blue-900: #0b1f3b;
@@ -647,13 +738,13 @@ body.uc-locked {
   background: var(--bg)
 }
 
-:root[data-theme="t2"] .project-card h3 {
-  color: var(--text)
-}
-
 :root[data-theme="t2"] .values-item {
   background: rgba(255, 255, 255, .06);
   border-color: rgba(255, 255, 255, .12)
+}
+
+:root[data-theme="t2"] .project-card h3 {
+  color: var(--text)
 }
 
 :root[data-theme="t2"] .safety-inner {
@@ -669,7 +760,7 @@ body.uc-locked {
   color: var(--muted)
 }
 
-/* t3 — Cool Ice (light canvas, deep navy, punchy CTAs) */
+/* t3 — Cool Ice (light canvas, punchy CTAs) */
 :root[data-theme="t3"] {
   --blue-900: #0a2a4a;
   --blue-800: #123a63;
@@ -730,15 +821,6 @@ body.uc-locked {
   color: var(--color-primary)
 }
 
-:root[data-theme="t3"] .project-card p {
-  color: var(--muted)
-}
-
-:root[data-theme="t3"] .zig-acc details {
-  background: #fff;
-  border-color: var(--border)
-}
-
 :root[data-theme="t3"] .cta-button {
   background: var(--color-secondary);
   box-shadow: 0 8px 20px rgba(59, 130, 246, .28)
@@ -761,7 +843,6 @@ body.uc-locked {
 
 /* t4 — Copper Sand (warm neutrals, amber CTAs — non-blue) */
 :root[data-theme="t4"] {
-  /* repurpose “blue” tokens to coffee/amber */
   --blue-900: #2f2a25;
   --blue-800: #3c342c;
   --blue-700: #5a4636;
@@ -775,16 +856,32 @@ body.uc-locked {
   --color-primary: #5a4636;
   --color-secondary: #d97706;
   --hero-overlay: rgba(60, 35, 15, .32);
+
 }
 
 :root[data-theme="t4"] .nav-menu {
   background: var(--blue-900)
 }
 
+:root[data-theme="t4"] .home-values-strip {
+  background: var(--blue-900);
+  /* keep strip color */
+  color: #fff;
+  /* force high-contrast headings */
+}
+
 :root[data-theme="t4"] .values-item {
-  background: rgba(255, 255, 255, .85);
-  border-color: #e9dccf;
+  background: rgba(0, 0, 0, 0.28);
+  border-color: rgba(0, 0, 0, 0.35);
   box-shadow: 0 8px 20px rgba(90, 70, 54, .12)
+}
+
+:root[data-theme="t4"] .values-text h4 {
+  color: #ffffff;
+}
+
+:root[data-theme="t4"] .values-text p {
+  color: #eaf2ff;
 }
 
 :root[data-theme="t4"] .safety-inner {
@@ -815,7 +912,7 @@ body.uc-locked {
   color: #7a6d64
 }
 
-/* t5 — Emerald Mist (mint canvas, teal/green accents — non-blue) */
+/* t5 — Emerald Mist (mint canvas, teal accents — non-blue) */
 :root[data-theme="t5"] {
   --blue-900: #0f3b39;
   --blue-800: #115e59;
@@ -837,10 +934,23 @@ body.uc-locked {
 }
 
 :root[data-theme="t5"] .values-item {
-  background: rgba(255, 255, 255, .8);
-  border-color: rgba(17, 94, 89, .08);
+  background: rgba(0, 0, 0, 0.24);
+  border-color: rgba(0, 0, 0, 0.32);
   box-shadow: 0 8px 18px rgba(17, 94, 89, .12);
   backdrop-filter: blur(6px)
+}
+
+:root[data-theme="t5"] .home-values-strip {
+  background: var(--blue-900);
+  color: #fff;
+}
+
+:root[data-theme="t5"] .values-text h4 {
+  color: #ffffff;
+}
+
+:root[data-theme="t5"] .values-text p {
+  color: #f0f6ff;
 }
 
 :root[data-theme="t5"] .safety-inner {
