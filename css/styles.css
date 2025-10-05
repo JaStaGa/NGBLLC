@@ -148,8 +148,8 @@ body {
 }
 
 .brand-logo {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 6px;
   display: block;
 }
@@ -250,7 +250,7 @@ body {
   }
 
   .hero h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .hero p {
