@@ -141,10 +141,12 @@ body {
 }
 
 .brand {
+  justify-self: start;
   display: flex;
   align-items: center;
   gap: .6rem;
-  text-decoration: none;
+  flex-direction: row; /* logo left of any text */
+  text-align: left;
 }
 
 .brand-logo {
@@ -1045,23 +1047,12 @@ body.uc-locked {
 /* Center the brand block and stack text under the logo */
 .hero-header .header-row {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr;
   /* left spacer | brand | nav */
   align-items: center;
+  gap: 1rem;
 }
 
-.brand {
-  grid-column: 2;
-  /* put brand in the middle column */
-  display: flex;
-  flex-direction: column;
-  /* logo on top, text under */
-  align-items: center;
-  /* center horizontally */
-  gap: .35rem;
-  text-align: center;
-  /* center the NGB text lines */
-}
 
 .brand-logo {
   margin: 0 auto;
