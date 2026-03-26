@@ -280,6 +280,14 @@
                 </div>
             </div> -->
 
+            <div class="footer-address">
+                <h3>Address</h3>
+                <div class="footer-block">
+                    <p>37 Russell St</p>
+                    <p>Quincy, MA 02171-1659</p>
+                </div>
+            </div>
+
             <div class="footer-certifications">
                 <h3>Credentials</h3>
 
@@ -425,10 +433,7 @@
 
     <script>
         (() => {
-            const OVERLAY_ID = 'uc-overlay';
-            const STORAGE_KEY = 'ucDismissed';
-
-            const overlay = document.getElementById(OVERLAY_ID);
+            const overlay = document.getElementById('uc-overlay');
             const btn = document.getElementById('uc-continue');
             const returnFocus = document.querySelector('.cta-button') || document.body;
 
@@ -441,23 +446,24 @@
             const hide = () => {
                 overlay.classList.add('hidden');
                 document.body.classList.remove('uc-locked');
-                localStorage.setItem(STORAGE_KEY, '1');
                 returnFocus.focus();
             };
 
-            document.addEventListener('DOMContentLoaded', () => {
-                if (!localStorage.getItem(STORAGE_KEY)) show();
-                else overlay.classList.add('hidden');
-            });
+            document.addEventListener('DOMContentLoaded', show);
 
             btn?.addEventListener('click', hide);
-            overlay?.addEventListener('click', (e) => { if (e.target === overlay) hide(); });
+            overlay?.addEventListener('click', (e) => {
+                if (e.target === overlay) hide();
+            });
+
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !overlay.classList.contains('hidden')) hide();
+                if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+                    hide();
+                }
             });
         })();
     </script>
-
+    
     <script>
         (() => {
             const KEY = 'ngbThemeName';

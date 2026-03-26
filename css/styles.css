@@ -1239,3 +1239,10 @@ body.uc-locked {
     font-size: 0.98rem;
   }
 }
+
+.footer-address,
+.footer-certifications {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
