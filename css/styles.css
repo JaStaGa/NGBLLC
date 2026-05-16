@@ -2660,3 +2660,24 @@ body {
     font-size: clamp(1.65rem, 8vw, 2.15rem);
   }
 }
+
+/* Fix mobile safety bar contrast */
+.safety-inner {
+  background: #ffffff;
+  color: var(--color-primary);
+}
+
+.safety-inner p {
+  color: var(--color-primary);
+}
+
+@media (max-width: 640px) {
+  .safety-inner {
+    background: #ffffff !important;
+    color: var(--color-primary) !important;
+  }
+
+  .safety-inner p {
+    color: var(--color-primary) !important;
+  }
+}
