@@ -2385,3 +2385,278 @@ body.uc-locked {
     gap: 0.9rem;
   }
 }
+
+/* =========================================================
+   TRADE PARTNER CTA + SERVICES NUMBER REMOVAL
+   ========================================================= */
+.trade-partner-callout {
+  background: #f5f7fb;
+  padding: 4rem 0;
+}
+
+.trade-partner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background:
+    radial-gradient(circle at top right, rgba(30, 95, 176, 0.14), transparent 35%),
+    linear-gradient(135deg, #ffffff 0%, #eef4fb 100%);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2.25rem;
+  box-shadow: 0 14px 34px rgba(15, 31, 59, 0.08);
+}
+
+.trade-partner-inner h2 {
+  color: var(--color-primary);
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.trade-partner-inner p:last-child {
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  max-width: 680px;
+}
+
+.principle-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta-button-secondary {
+  background: #ffffff;
+  color: var(--color-secondary);
+  border-color: rgba(30, 95, 176, 0.18);
+}
+
+.service-number {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .trade-partner-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .trade-partner-callout {
+    padding: 3rem 0;
+  }
+
+  .trade-partner-inner {
+    padding: 1.45rem;
+    border-radius: 18px;
+  }
+
+  .trade-partner-inner .cta-button,
+  .principle-actions,
+  .principle-actions .cta-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   HOMEPAGE POLISH PASS — TYPOGRAPHY, HERO, TRADE PARTNERS
+   ========================================================= */
+
+/* Sharper, more readable text across the site */
+body {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.hero-lead,
+.section-intro,
+.project-card p,
+.service-card p,
+.home-check-list li,
+.trade-partner-inner p:last-child,
+.footer-column p,
+.footer-bottom p {
+  line-height: 1.78;
+}
+
+.project-card p,
+.service-card p,
+.home-check-list li {
+  font-size: 1rem;
+}
+
+.section-intro {
+  font-size: 1.05rem;
+}
+
+/* Remove visible service numbers on the homepage service cards. */
+.service-tag {
+  display: none !important;
+}
+
+.service-body {
+  padding-top: 1.35rem;
+}
+
+/* Desktop hero breathing room */
+@media (min-width: 901px) {
+  .hero-layout {
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .hero-shell {
+    padding: 8.75rem 0 4.75rem;
+  }
+
+  .hero-content {
+    max-width: 700px;
+  }
+
+  .hero-lead {
+    font-size: 1.12rem;
+    max-width: 630px;
+    margin-bottom: 1.65rem;
+  }
+
+  .hero-actions {
+    gap: 0.85rem;
+  }
+
+  .hero-secondary,
+  .cta-button {
+    white-space: nowrap;
+  }
+}
+
+/* Prevent the expanded nav from feeling cramped on laptop widths. */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .nav-links {
+    gap: 1.15rem;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+  }
+
+  .header-cta {
+    padding-inline: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Make the trade partner block feel more intentional. */
+.trade-partner-callout {
+  padding: 4.75rem 0;
+}
+
+.trade-partner-inner {
+  position: relative;
+  overflow: hidden;
+  padding: 2.65rem;
+  border-left: 5px solid var(--color-secondary);
+}
+
+.trade-partner-inner::after {
+  content: "";
+  position: absolute;
+  right: -70px;
+  top: -70px;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  background: rgba(30, 95, 176, 0.08);
+}
+
+.trade-partner-inner>* {
+  position: relative;
+  z-index: 1;
+}
+
+.trade-partner-inner h2 {
+  max-width: 760px;
+}
+
+.trade-partner-inner .cta-button {
+  flex: 0 0 auto;
+}
+
+/* Mobile: keep the hero strong, but reduce crowding. */
+@media (max-width: 640px) {
+  body {
+    font-size: 15.5px;
+  }
+
+  .hero-shell {
+    padding: 6.75rem 0 2.05rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.35rem, 11vw, 3.1rem);
+    margin-bottom: 0.9rem;
+  }
+
+  .hero-lead {
+    font-size: 0.96rem;
+    line-height: 1.62;
+    margin-bottom: 1.05rem;
+  }
+
+  .hero-actions {
+    gap: 0.7rem;
+  }
+
+  .hero-panel {
+    margin-top: 0.35rem;
+    padding: 0.85rem 0.95rem;
+  }
+
+  .hero-panel-label {
+    margin-bottom: 0.35rem;
+  }
+
+  .hero-panel h3 {
+    font-size: 0.98rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .hero-panel p {
+    display: none;
+  }
+
+  .hero-panel a {
+    display: inline-block;
+    font-size: 0.84rem;
+  }
+
+  .section-intro,
+  .project-card p,
+  .service-card p,
+  .trade-partner-inner p:last-child {
+    font-size: 0.96rem;
+    line-height: 1.68;
+  }
+
+  .project-card-body,
+  .service-body {
+    padding: 1.15rem 1.05rem 1.25rem;
+  }
+
+  .trade-partner-callout {
+    padding: 3.25rem 0;
+  }
+
+  .trade-partner-inner {
+    padding: 1.55rem;
+  }
+
+  .trade-partner-inner h2 {
+    font-size: clamp(1.65rem, 8vw, 2.15rem);
+  }
+}
